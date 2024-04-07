@@ -9,7 +9,7 @@ import CreateReview from "components/CreateReview/CreateReview";
 import { ReactComponent as Save } from "assets/icons/save.svg";
 import { ReactComponent as Share } from "assets/icons/share.svg";
 import { ReactComponent as Right } from "assets/icons/chevron-right.svg";
-import { reviews, suggestions } from "mocks/reviews";
+import { allReviews, suggestions } from "mocks/reviews";
 import Placeholder1 from "assets/images/Placeholder-1.png"
 import Placeholder2 from "assets/images/Placeholder-2.png"
 import Placeholder3 from "assets/images/Placeholder-3.png"
@@ -20,10 +20,15 @@ export default function Reviews() {
     const [search, setSearch] = useState('')
     const searchValue = searchParams.get('search')
     const [leaveReview, setLeaveReview] = useState(false)
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
         setSearch(searchParams.get('search'))
     }, [searchParams])
+
+    useEffect(() => {
+        setReviews(allReviews)
+    }, []);
 
     const handleChange = (e) => {
         setSearch(e.target.value)
@@ -31,6 +36,11 @@ export default function Reviews() {
 
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) setSearchParams({ search });
+    }
+
+    const submitReview = (e) => {
+        const review = { ...e, id: reviews.length + 1 }
+        setReviews([review, ...reviews])
     }
 
     return (
@@ -125,7 +135,13 @@ export default function Reviews() {
                     </section>
                 </div> : <div></div>
             }
-            {leaveReview && <CreateReview title={search} cancel={() => setLeaveReview(false)} />}
+            {leaveReview &&
+                <CreateReview
+                    title={search}
+                    cancel={() => setLeaveReview(false)}
+                    submitReview={submitReview}
+                />
+            }
         </main>
     )
 }

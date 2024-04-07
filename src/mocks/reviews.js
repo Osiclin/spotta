@@ -1,6 +1,6 @@
 export const suggestions = ['Schools', 'Hospitals', 'Resort Park', 'Shopping Malls', 'Airport', 'Train Station', 'Nightlife', 'Public Wifi', 'Parking Lot', 'Security', 'Public Transport', 'Bus Station', 'Quiet']
 
-export const reviews = [
+export const allReviews = [
     {
         id: 1,
         name: "James T",

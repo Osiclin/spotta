@@ -6,19 +6,30 @@ import Checkbox from "components/Inputs/Checkbox/Checkbox";
 import Button from "components/Button/Button";
 import useAmenities from "hooks/useAmenities";
 
-export default function CreateReview({ title, cancel }) {
+export default function CreateReview({ title, cancel, submitReview }) {
     const [showAmenities, setShowAmenities] = useState(false)
     const { amenities, selectAmenities } = useAmenities()
     const [anonymous, setAnonymous] = useState(false)
     const [formData, setFormData] = useState({
         review: '',
-        rating: 0
+        rating: 0,
+        name: "James T",
+        duration: '5 months ago',
+        likes: 0,
+        dislikes: 0,
+        comments: 0
     })
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        submitReview(formData)
+        cancel()
+    }
 
     return (
         <div className="overlay">
             <div className="modal modal-center w-full bg-[#1D3045] h-screen">
-                <form className="max-w-[90%] sm:max-w-[695px] mx-auto bg-white rounded-[6px] p-[24px] mt-[100px]">
+                <form className="max-w-[90%] sm:max-w-[695px] mx-auto bg-white rounded-[6px] p-[24px] mt-[100px]" onSubmit={onSubmit}>
                     <p className="text-[18px] text-light text-center font-medium mb-[16px]">Review Location</p>
                     <p className="text-[20px] text-light mb-[24px]">{title}</p>
                     <div className="relative mb-[16px]">
