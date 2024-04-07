@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Inter", sans-serif;
+  position: relative;
+}
+
+.app-layout {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background: #00000071;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.modal {
+  position: fixed;
+  z-index: 30;
+}
+
+.modal-center {
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  left: 50%;
+  opacity: 1;
+  transition: 1s;
+}
+
+.image {
+  width: 235px;
+  height: 234px;
+  object-fit: cover;
+  object-position: center 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .app-layout {
+    padding: 0 16px;
+  }
+
+  .image {
+    width: 175px;
+    height: 234px;
+  }
 }
